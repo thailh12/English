@@ -35,7 +35,7 @@ class App extends Component {
           submit
         </button>
         <div>
-          <h1>synonym of {this.state.word} is</h1><h2>{this.state.description}</h2>
+          <h1>Synonym of {this.state.word} is</h1><h2>{this.state.description}</h2>
         </div>
       </div>
     )
