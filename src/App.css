@@ -11,3 +11,6 @@
   display: inline-block;
   position: absolute;
 }
+.output{
+  align-items: center;
+}
