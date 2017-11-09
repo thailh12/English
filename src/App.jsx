@@ -15,7 +15,7 @@ class App extends Component {
       })
     } else if (json.hasOwnProperty('verb')) {
       this.setState({
-        synonym: json.verd.syn + " "
+        synonym: json.verb.syn + " "
       })
     } else {
       this.setState({description: "404 Not Found"})
@@ -34,7 +34,6 @@ class App extends Component {
 
   call(word) {
     this.setState({word: "", synonym: "", antonym: ""});
-
     fetch(`http://words.bighugelabs.com/api/2/53ffd46ebac03632a4179401a3cae48b/${word}&/json`).then(response => response.json()).then(json => {
       this.show(json)
     })
@@ -47,14 +46,14 @@ class App extends Component {
         submit
       </button>
       <div className="output">
-        <h1>Synonym of {this.state.word}
-          is</h1>
-        <h2>{this.state.synonym}</h2>
-      </div>
-      <div>
-        <h1>Antonym of {this.state.word}
-          is</h1>
-        <h2>{this.state.antonym}</h2>
+        <div className="syn">
+          <h1>Synonym of {this.state.word} is</h1>
+          <h2>{this.state.synonym}</h2>
+        </div>
+        <div className="ant">
+          <h1>Antonym of {this.state.word} is</h1>
+          <h2>{this.state.antonym}</h2>
+        </div>
       </div>
     </div>)
   }
