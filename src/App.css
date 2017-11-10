@@ -1,16 +1,43 @@
-#input{
-  margin: 5px;
+.form-control{
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .form-group{
   padding-top: 30px;
-  text-align: center;
+  align-items: center;
 }
 .App{
   padding-top: 20px;
-  display: inline-block;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .output{
   align-items: center;
+}
+input {
+  margin: 10px;
+  text-decoration-color:  palevioletred;
+}
+.main{
+  text-align: center;
+}
+.syn{
+  float: left;
+  width: 50%;
+  height: 600px;
+  text-align: center;
+  background:  black;
+}
+.ant{
+  float: right;
+  width: 50%;
+  height: 600px;
+}
+.footer{
+
+}
+#out{
+  text-align: center;
 }

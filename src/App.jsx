@@ -9,6 +9,9 @@ class App extends Component {
       this.setState({
         antonym: json.adjective.ant + " "
       })
+      this.setState({
+        synonym: json.adjective.sim + " "
+      })
     } else if (json.hasOwnProperty('noun')) {
       this.setState({
         synonym: json.noun.syn + " "
@@ -40,20 +43,29 @@ class App extends Component {
   }
 
   render() {
-    return (<div className="form-group">
-      <input id="input" type="text" placeholder="your word..." onChange={event => this.setState({word: event.target.value})}/>
-      <button className="btn btn-success" type="button" onClick={() => this.call(this.state.word)}>
-        submit
-      </button>
+    return (
+      <div className="main">
+        <h1>Find synonym and antonym</h1>
+      <div className="form-inline">
+          <div className="form-group">
+          <input className="form-control" type="text" placeholder="your word..." onChange={event => this.setState({word: event.target.value})}/>
+          <button className="btn btn-success" type="button" onClick={() => this.call(this.state.word)}>
+            SUBMIT
+          </button>
+        </div>
+      </div>
       <div className="output">
         <div className="syn">
           <h1>Synonym of {this.state.word} is</h1>
-          <h2>{this.state.synonym}</h2>
+          <h2 id="out">{this.state.synonym}</h2>
         </div>
         <div className="ant">
           <h1>Antonym of {this.state.word} is</h1>
-          <h2>{this.state.antonym}</h2>
+          <h2 id="out">{this.state.antonym}</h2>
         </div>
+      </div>
+      <div className="footer">
+        <span>Power by React <br /> Develop by Thai Lam Ha <br /> Design by jiichu</span>
       </div>
     </div>)
   }
