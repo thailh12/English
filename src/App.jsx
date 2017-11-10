@@ -1,29 +1,24 @@
 import React, {Component} from 'react';
 
 class App extends Component {
-  show(json) {
-    if (json.hasOwnProperty('adjective')) {
-      this.setState({
-        synonym: json.adjective.syn + " "
-      })
-      this.setState({
-        antonym: json.adjective.ant + " "
-      })
-      this.setState({
-        synonym: json.adjective.sim + " "
-      })
-    } else if (json.hasOwnProperty('noun')) {
-      this.setState({
-        synonym: json.noun.syn + " "
-      })
-    } else if (json.hasOwnProperty('verb')) {
-      this.setState({
-        synonym: json.verb.syn + " "
-      })
-    } else {
-      this.setState({description: "404 Not Found"})
-    }
-    console.log(this.state);
+  first(json) {
+    this.setState({synonym: [
+      json[0].word,
+      json[1].word,
+      json[2].word,
+      json[3].word,
+      json[4].word
+    ]});
+  }
+  second(json){
+    this.setState({antonym: [
+      json[0].word,
+      json[1].word,
+      json[2].word,
+      json[3].word,
+      json[4].word
+    ]});
+
   }
 
   constructor(props) {
@@ -35,11 +30,21 @@ class App extends Component {
     }
   }
 
-  call(word) {
-    this.setState({word: "", synonym: "", antonym: ""});
-    fetch(`http://words.bighugelabs.com/api/2/53ffd46ebac03632a4179401a3cae48b/${word}&/json`).then(response => response.json()).then(json => {
-      this.show(json)
+  call1(word) {
+    fetch(`https://api.datamuse.com/words?ml=${word}&&max=5`)
+    .then(response => response.json())
+    .then(json => {
+      this.first(json)
     })
+
+  }
+  call2(word) {
+    fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=5`)
+    .then(response => response.json())
+    .then(json => {
+      this.second(json)
+    })
+
   }
 
   render() {
@@ -49,7 +54,9 @@ class App extends Component {
       <div className="form-inline">
           <div className="form-group">
           <input className="form-control" type="text" placeholder="your word..." onChange={event => this.setState({word: event.target.value})}/>
-          <button className="btn btn-success" type="button" onClick={() => this.call(this.state.word)}>
+          <button className="btn btn-success" type="button" onClick={() => {
+            this.call2(this.state.word)
+            this.call1(this.state.word)}}>
             SUBMIT
           </button>
         </div>
@@ -57,11 +64,20 @@ class App extends Component {
       <div className="output">
         <div className="syn">
           <h1>Synonym of {this.state.word} is</h1>
-          <h2 id="out">{this.state.synonym}</h2>
+          <h2 id="out">{this.state.synonym[0]}</h2>
+          <h2 id="out">{this.state.synonym[1]}</h2>
+          <h2 id="out">{this.state.synonym[2]}</h2>
+          <h2 id="out">{this.state.synonym[3]}</h2>
+          <h2 id="out">{this.state.synonym[4]}</h2>
+
         </div>
         <div className="ant">
           <h1>Antonym of {this.state.word} is</h1>
-          <h2 id="out">{this.state.antonym}</h2>
+          <h2 id="out">{this.state.antonym[0]}</h2>
+          <h2 id="out">{this.state.antonym[1]}</h2>
+          <h2 id="out">{this.state.antonym[2]}</h2>
+          <h2 id="out">{this.state.antonym[3]}</h2>
+          <h2 id="out">{this.state.antonym[4]}</h2>
         </div>
       </div>
       <div className="footer">
