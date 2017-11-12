@@ -57,6 +57,10 @@ class App extends Component {
           <div className="form-group">
           <input className="form-control" type="text" placeholder="your word..." onChange={event => this.setState({word: event.target.value})}/>
           <button className="btn btn-success" type="button" onClick={() => {
+            this.setState({
+              synonym: [],
+              antonym: []
+            })
             this.call2(this.state.word)
             this.call1(this.state.word)
           }}>
@@ -67,18 +71,18 @@ class App extends Component {
       <div className="output">
         <div className="syn">
           <h1>Synonym of {this.state.word} </h1>
-          <h2 id="out">{this.state.synonym[0]}</h2>
+          <h2 id="outsyn" >{this.state.synonym+""}</h2>
 
         </div>
         <div className="ant">
           <h1>Antonym of {this.state.word} </h1>
-          <h2 id="out">{this.state.antonym[0]}</h2>
+          <h2 id="outant">{this.state.antonym+""}</h2>
 
         </div>
       </div>
       <div className="footer">
         <span>Power by datamuse.com API <br /> Develop by Thai Lam Ha <br /></span>
-        <span id="contact"> Contact <br /> Phone:+841234333198 <br /> email:thaihadev@gmail.com </span>
+        <span id="contact"> Contact <br /> Phone: +841234333198 <br /> email: thaihadev@gmail.com </span>
       </div>
     </div>)
   }
