@@ -35,8 +35,11 @@ input {
   height: 600px;
 }
 .footer{
-
+  text-align: center;
 }
 #out{
   text-align: center;
+}
+#contact{
+  float: right;
 }

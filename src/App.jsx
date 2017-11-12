@@ -1,32 +1,33 @@
 import React, {Component} from 'react';
 
 class App extends Component {
-  first(json) {
-    this.setState({synonym: [
-      json[0].word,
-      //json[1].word,
-    //  json[2].word,
-  //    json[3].word,
-  //    json[4].word
-    ]});
-  }
-  second(json){
-    this.setState({antonym: [
-      json[0].word
-      //json[1].word,
-    // json[2].word,
-  //    json[3].word,
-    //  json[4].word
-    ]});
 
-//  }
-}
+  first(json, k) {
+    if (k>=0){
+    let i=0;
+    for (i; i<k;i++) {
+      this.state.synonym.push(json[i].word);
+    }
+  }
+  this.forceUpdate();
+  }
+
+  second(json, k){
+    if (k>=0){
+    let i=0;
+    for (i; i<k;i++) {
+      this.state.antonym.push(json[i].word);
+    }
+  }
+  this.forceUpdate();
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       word: "",
-      synonym: "",
-      antonym: ""
+      synonym: [],
+      antonym: []
     }
   }
 
@@ -34,15 +35,16 @@ class App extends Component {
     fetch(`https://api.datamuse.com/words?ml=${word}&&max=5`)
     .then(response => response.json())
     .then(json => {
-      this.first(json)
+      this.first(json, json.length)
     })
 
   }
+
   call2(word) {
     fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=5`)
     .then(response => response.json())
     .then(json => {
-      this.second(json)
+      this.second(json, json.length)
     })
 
   }
@@ -66,16 +68,17 @@ class App extends Component {
         <div className="syn">
           <h1>Synonym of {this.state.word} </h1>
           <h2 id="out">{this.state.synonym[0]}</h2>
-          <h2 id="out">{this.state.synonym[1]}</h2>
+
         </div>
         <div className="ant">
           <h1>Antonym of {this.state.word} </h1>
           <h2 id="out">{this.state.antonym[0]}</h2>
-          <h2 id="out">{this.state.antonym[1]}</h2>
+
         </div>
       </div>
       <div className="footer">
-        <span>Power by datamuse API <br /> Develop by Thai Lam Ha <br /> Design by jiichu</span>
+        <span>Power by datamuse.com API <br /> Develop by Thai Lam Ha <br /></span>
+        <span id="contact"> Contact <br /> Phone:+841234333198 <br /> email:thaihadev@gmail.com </span>
       </div>
     </div>)
   }
