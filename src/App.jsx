@@ -32,13 +32,13 @@ class App extends Component {
   }
 
   call1(word) {
-    fetch(`https://api.datamuse.com/words?ml=${word}&&max=5`).then(response => response.json()).then(json => {
+    fetch(`https://api.datamuse.com/words?ml=${word}&&max=10`).then(response => response.json()).then(json => {
       this.first(json, json.length)
     })
   }
 
   call2(word) {
-    fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=5`).then(response => response.json()).then(json => {
+    fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=10`).then(response => response.json()).then(json => {
       this.second(json, json.length)
     })
   }
