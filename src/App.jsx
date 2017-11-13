@@ -32,13 +32,15 @@ class App extends Component {
   }
 
   call1(word) {
-    fetch(`https://api.datamuse.com/words?ml=${word}&&max=10`).then(response => response.json()).then(json => {
+    fetch(`https://api.datamuse.com/words?ml=${word}&&max=10`)
+    .then(response => response.json()).then(json => {
       this.first(json, json.length)
     })
   }
 
   call2(word) {
-    fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=10`).then(response => response.json()).then(json => {
+    fetch(`https://api.datamuse.com/words?rel_ant=${word}&&max=10`)
+    .then(response => response.json()).then(json => {
       this.second(json, json.length)
     })
   }
@@ -68,7 +70,8 @@ class App extends Component {
       <h1>Find synonym and antonym</h1>
       <div className="form-inline">
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="your word..." onChange={event => this.setState({word: event.target.value})}/>
+          <input className="form-control" type="text" placeholder="your word..."
+            onChange={event => this.setState({word: event.target.value})}/>
           <button className="btn btn-success" type="button" onClick={() => {
               this.setState({synonym: [], antonym: []})
               this.call2(this.state.word)
@@ -92,7 +95,7 @@ class App extends Component {
         </div>
       </div>
       <div className="footer">
-        <span>Power by datamuse.com API
+        <span>Powed by datamuse.com API
           <br/>
           Develop by Thai Lam Ha
           <br/></span>
