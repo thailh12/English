@@ -45,7 +45,7 @@ class App extends Component {
     })
   }
 
-  outsyn(a) {
+  out(a) {
       const data =a;
        const listItems = data.map((d) => <div key={d}>{d}</div>);
        return (
@@ -54,16 +54,6 @@ class App extends Component {
          </div>
        );
      }
-  outant(a) {
-      const data =a;
-       const listItems = data.map((d) => <div key={d}>{d}</div>);
-       return (
-         <div>
-         {listItems }
-         </div>
-       );
-     }
-
 
   render() {
     return (<div className="main">
@@ -85,17 +75,17 @@ class App extends Component {
         <div className="syn">
           <h1>Synonym of {this.state.word}
           </h1>
-          <h2 id="outsyn">{this.outsyn(this.state.synonym)}</h2>
+          <h2 id="outsyn">{this.out(this.state.synonym)}</h2>
         </div>
         <div className="ant">
           <h1>Antonym of {this.state.word}
           </h1>
-          <h2 id="outant">{this.outant(this.state.antonym)}</h2>
+          <h2 id="outant">{this.out(this.state.antonym)}</h2>
 
         </div>
       </div>
       <div className="footer">
-        <span>Powed by datamuse.com API
+        <span>Powered by datamuse.com API
           <br/>
           Develop by Thai Lam Ha
           <br/></span>
